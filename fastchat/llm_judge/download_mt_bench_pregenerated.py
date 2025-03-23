@@ -1,6 +1,8 @@
 """
 Download the pre-generated model answers and judgments for MT-bench.
 """
+import sys
+import requests
 import os
 
 from fastchat.utils import run_cmd
@@ -47,5 +49,5 @@ if __name__ == "__main__":
 
     for name in filenames:
         os.makedirs(os.path.dirname(name), exist_ok=True)
-        ret = run_cmd(f"wget -q --show-progress -O {name} {prefix + name}")
+        ret = run_cmd(f"curl -L -o {name} {prefix + name}")
         assert ret == 0
